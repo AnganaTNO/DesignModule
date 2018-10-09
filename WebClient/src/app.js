@@ -153,8 +153,8 @@ window.domainsControl = L.control.domains({});
 map.addControl(domainsControl);
 
 DataManager.detailsInfo = {
-    elementWidth: 400,
-    kpiWidth: 350, kpiHeight: 40,
+    elementWidth: 140,
+    kpiWidth: 134, kpiHeight: 40,
     chartWidth: 134, chartHeight: 100,
     layerWidth: 134, layerHeight: 140,
     padding: 2,

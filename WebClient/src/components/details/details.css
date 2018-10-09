@@ -6,17 +6,34 @@
     overflow-y: auto;
     overflow-x: auto;
     max-height: 80vh;
-    max-width: 80vw;    
+    max-width: 80vw;
+    display: flex;
 }
 
 #phone .details-view {
     max-height: 300px;
 }
 
+.details-view .details-icon {
+    display: none;
+    margin: auto;
+    color: rgb(93, 133, 181);
+    font-size: 23px;
+}
+
+.details-view.collapsed .details-icon {
+    display: block;
+}
+
+.leaflet-retina .details-view.collapsed .details-icon {
+    font-size: 20px;
+}
+
 .details-view.collapsed {
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-image: url('./images/details.png');
+    /* todo: uncomment when layers details are implemented. */
+    /*background-image: url('./images/details.png');*/
     width: 36px;
     height: 36px;
     cursor: pointer;
@@ -24,7 +41,8 @@
 }
 
 .leaflet-retina .details-view.collapsed {
-    background-image: url('./images/details-2x.png');
+    /* todo: uncomment when layers details are implemented. */
+    /*background-image: url('./images/details-2x.png');*/
     background-size: 26px 26px;
 }
 
@@ -53,9 +71,10 @@
     font-size: 1em;
 }
 
-.details-view .details-body .section:nth-child(n+2) {
+/* todo: uncomment when layers details are implemented. */
+/*.details-view .details-body .section:nth-child(n+2) {
     border-top: 1px solid grey;
-}
+}*/
 
 .details-view .details-body .container {
     display: flex;

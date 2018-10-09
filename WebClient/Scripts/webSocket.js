@@ -17,14 +17,27 @@ var wsLookup = {
                 layerControl.removeLayer(lcl.layer);
             }
         }
-        // add basic layers from domains
+
+        var graphs = [];
+        
         for (var domainName in payload) {
             var domain = payload[domainName];
+            
+            // add basic layers from domains
             for (var id2 in domain.layers) {
                 var layer = domain.layers[id2];
                 if (layer.basic)
                     addBasicLayer(layer);
             }
+
+            // collect graphs
+            if (domain && Array.isArray(domain.charts)) {
+                graphs = graphs.concat(domain.charts);
+            }
+        }
+
+        if (graphService) {            
+            graphService.setGraphs(graphs);
         }
     },
     updatedomains: function (payload) {
@@ -78,7 +91,9 @@ var wsLookup = {
         detailsControl.resetkpi(payload); //todo implement KPI's?
     },
     updatechart: function (payload) {
-        GraphManager.UpdateGraphs(payload);
+        if (graphService) {
+            graphService.updateGraphs(payload);
+        }
     },
     showchart: function (payload) {
         GraphManager.ShowGraphs(payload);
@@ -329,6 +344,7 @@ function wsConnect() {
             console.log(evt.data);
             throw err;
         }
+
         // check if single message -> convert single message to array of 1
         if (!(Object.prototype.toString.call(messages) === '[object Array]')) {
             messages = [messages];
